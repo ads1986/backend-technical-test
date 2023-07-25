@@ -1,0 +1,201 @@
+##########################
+######### Tasks ##########
+##########################
+
+◼ Create the application structure
+
+	• Create the pom.xml file
+	•
+
+◼ Create Rest API
+
+	• Setup MongoDB local
+		- Run as a docker container
+	• Load previous Json data at the database
+	• Documentation
+		△ Explane how to setup database with Docker
+
+◼ Create the Documentation
+
+
+
+◼ Build Backend App
+
+	• ✓ Generate an app in Spring Initlzr with:
+		△ ✓ Java 17
+		△ ✓ Spring Boot 3
+		△ ✓ Maven
+		△ ✓ Web Support
+		△ ✓ Junit 5 + Mockito
+		△ ✓ Testcontainer
+		△ ✓ Mongodb 
+		△ ✓ Mapstruct 
+
+	• ✓ MongoDB
+		△ Setup configuration db connection
+
+	• ✓ Testcontainer
+		△ ✓ Setup configuration
+
+	• ✓ Exception
+		△ ✓ Create exceptions for status 400, 404 and 500
+		△ ✓ Create a global Exception handler
+
+	• Packeto
+		△ Configure app to be packed into Docker image
+
+	• Documentation
+		△ How to run app local
+		△ How to run tests
+		△ How to deploy the app
+		△ Create diagram
+
+	• Nice to Have
+
+		- Include Kubernetes deployment
+		- Use java modules
+		- Inclusão de logs
+		- Lombok
+		- Spring Profile
+		- Live loading
+
+◼ Create a partner
+
+	• Integration Test
+		- Implement the folowing tests
+			△ id include an empty or null value
+			△ id more the 36 positions
+			△ id include equal or last than 36 positions
+			△ tradingName include an empty or null value
+			△ tradingName more than 500 positions
+			△ tradingName include equal or last than 500 positions
+			△ document include an empty or null value
+			△ document more than 18 positions
+			△ document include invalid value
+			△ document include value folowing the pattern validation
+			△ coverageArea.type include an empty or null value
+			△ coverageArea.type include an invalid type
+			△ coverageArea.coordinates include an invalid coordinate
+			△ coverageArea.coordinates include a valid coordinate
+			△ coverageArea.coordinates more than 500 positions
+			△ address.type include an empty or null value
+			△ address.type include an invalid type
+			△ address.coordinates include an invalid coordinate
+			△ address.coordinates include a valid coordinate
+			△ address.coordinates more than 200 positions
+
+	• Integration Test
+		- Implement the folowing tests
+			△ All field is mandatory
+
+	• Create an endpoint
+
+		- Define the endpoint name
+		- Include Swagger
+		- Create a request Partner endpoint
+			△ All field is mandatory
+			△ id use GUID Version 4 as pattern
+			△ id must have the size limited (36 positions)
+			△ ownerName must have the size limited (200 positions)
+			△ ownerName must be an alphanumeric field
+			△ tradingName must have the size limited (500 positions)
+			△ tradingName must be an alphanumeric field
+			△ document must have the size limited (18 positions)
+			△ document must have a pattern validation 
+			(1432132123891/0001)
+			△ coverageArea.type must be limited (12 positions)
+			△ coverageArea.coordinates must be limited (500 positions)
+			△ address.type must be limited (5 positions)
+			△ address.coordinates must be limited (200 positions)
+
+	• Use Case
+
+		- Implement Save Partner use case 
+		- Create a domain Partner class
+		- Implement the following rules
+			△ Understand GeoJSON Point
+			△ Understand GeoJSON MultiPolygon
+			△ Validate if address GeoJSON Point is correct
+				* Implement a code or use a lib to validate
+				* Return an exception in case is invalid (status 400)
+				* Message must be in the resource properties file
+			△ Validate if coverageArea GeoJSON MultiPolygon is correct
+				* Implement a code or use a lib to validate
+				* Return an exception in case is invalid (status 400)
+				* Message must be in the resource properties file
+		- Use Repository classe to save Partner
+
+	• Repository
+
+		- Create Entity Partner
+		- Create repository Implementation
+			△ Use Mongo db Crud Class
+
+	• Documentation
+		- Explaine how to test the api
+
+	• Nice to Have
+
+		- Include Swagger
+
+◼ Load partner by id:
+
+	• Create an endpoint
+
+		- ✓ Define the endpoint name
+		- ✓  Use the domain Partner class
+		- ✓ Create a request Partner endpoint
+			△ ✓ if no one, latitude or longitude provided, id is 
+
+	• Use Case
+
+		- ✓ Implement Search Partner use case 
+		- ✓ Use Repository classe to find the Partner by id
+
+	• Repository
+
+		- ✓ Use the Entity Partner
+		- ✓ Create repository Implementation
+			△ ✓ Use Mongo DB temp
+
+	• Documentation
+		△ Explaine how to test the api
+
+	• Nice to Have
+		- id must be an alphanumeric field
+		- id must have the size limited (36 positions)
+		- Include Swagger
+		
+◼ Search partner
+
+	• ✓ Create an endpoint
+
+		- ✓ Define the endpoint name
+		- ✓ Create a request Partner endpoint
+			△ ✓ if any, latitude or longitude provided, is mandatory
+			△ ✓ if no one, latitude or longitude provided, id is mandatory
+
+
+	• Use Case
+
+		- ✓ Implement Search Partner use case 
+		- ✓ Use the domain Partner class
+		- ✓ Implement the following rules
+			△ ✓ Understand the most performatic manner to search in Mongo DB
+			△ ✓ Do a query using latitude and longitude in database
+
+	• Repository
+
+		- ✓ Use the Entity Partner
+		- ✓ Create repository Implementation
+			△ ✓ Use Mongo DB temp
+
+	• Documentation
+		- Explaine how to test the api
+
+	• Nice to Have
+		- long must be an numeric field
+		- long must have the size limited (200 positions)
+		- lat must be an numeric field
+		- lat must have the size limited (200 positions)
+		- Include Swagger
